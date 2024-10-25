@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 import { MdMenuOpen } from "react-icons/md";
 import { IconButton, Avatar } from "@mui/material"; // for toggle sidenav
 import { MdMenu } from "react-icons/md"; // for toggle back the sidenav
-import SearchBox from "./SearchBox/SearchBox";
 import { IoSunnyOutline } from "react-icons/io5";
-import { IoIosNotificationsOutline } from "react-icons/io";
+import SearchBox from "../SearchBox/SearchBox";
+import Notification from "../NotificationaMenu/Notification";
 
 export default function Header() {
   return (
-    <header className="rounded-none">
-      <nav className="flex flex-row items-center gap-3 bg-white p-2 pr-5">
+    <div className="box-border min-w-screen">
+      <nav className="flex flex-row items-center gap-1 sm:gap-2 md:gap-3 bg-white py-2 min-w-screen">
         {/* Logo */}
         <div className="p-1 pr-6 min-w-fit">
           <Link className="flex flex-row items-center gap-1" to="/">
@@ -23,7 +23,7 @@ export default function Header() {
         </div>
 
         {/* SideToggleBtn */}
-        <div className="flex justify-center bg-[#F0F5FF] rounded-full w-7 h-7 sidetToggleBtn">
+        <div className="md:flex justify-center hidden bg-[#F0F5FF] rounded-full w-7 h-7 sidetToggleBtn">
           <IconButton
             color="primary"
             aria-label="add to shopping cart"
@@ -34,14 +34,18 @@ export default function Header() {
         </div>
 
         {/* Hidden Toggle Icon */}
-        <div className="justify-center hidden bg-[#F0F5FF] rounded-full w-7 h-7 sidetToggleBtn">
-          <IconButton color="primary" aria-label="add to shopping cart">
+        <div className="justify-center md:hidden bg-[#F0F5FF] rounded-full w-7 h-7 sidetToggleBtn">
+          <IconButton
+            color="primary"
+            aria-label="add to shopping cart"
+            size="small"
+          >
             <MdMenu color={"#292929"} />
           </IconButton>
         </div>
 
         {/* SearchBox */}
-        <div className="lg:inline-block hidden">
+        <div className="md:inline-block hidden">
           <SearchBox />
         </div>
 
@@ -56,19 +60,11 @@ export default function Header() {
               <IoSunnyOutline color={"#292929"} />
             </IconButton>
           </div>
-          <div className="flex justify-center bg-[#F0F5FF] mx-1 rounded-full w-7 h-7 sidetToggleBtn">
-            <IconButton
-              color="primary"
-              aria-label="add to shopping cart"
-              size="small"
-            >
-              <IoIosNotificationsOutline color={"#292929"} />
-            </IconButton>
-          </div>
+          <Notification />
         </div>
 
         {/* Avatar */}
-        <div className="flex flex-row justify-center items-center mx-2">
+        <div className="sm:flex flex-row justify-center items-center hidden mx-2">
           <div>
             <Avatar
               alt="Remy Sharp"
@@ -78,12 +74,12 @@ export default function Header() {
             />
           </div>
 
-          <div className="md:inline-block hidden hiddem">
+          <div className="lg:flex flex-col hidden">
             <h3 className="font-semibold text-lg">Arman Bhatia</h3>
             <h5 className="font-light text-sm">@bhatia0200</h5>
           </div>
         </div>
       </nav>
-    </header>
+    </div>
   );
 }

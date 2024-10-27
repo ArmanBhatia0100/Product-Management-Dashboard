@@ -29,7 +29,7 @@ export default function Notification() {
           <IconButton
             color="primary"
             aria-label="Notification-list"
-            size="small"
+            size="medium"
           >
             <IoIosNotificationsOutline color={"#292929"} />
           </IconButton>

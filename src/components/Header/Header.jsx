@@ -8,42 +8,8 @@ import Notification from "../NotificationaMenu/Notification";
 
 export default function Header() {
   return (
-    <div className="box-border min-w-screen">
-      <nav className="flex flex-row items-center gap-1 sm:gap-2 md:gap-3 bg-white py-2 min-w-screen">
-        {/* Logo */}
-        <div className="p-1 pr-6 min-w-fit">
-          <Link className="flex flex-row items-center gap-1" to="/">
-            <img
-              className="inline-block w-10 h-10"
-              src="/src/assets/logo.png"
-              alt="Logo"
-            />
-            <span className="font-bold text-2xl">HoTech</span>
-          </Link>
-        </div>
-
-        {/* SideToggleBtn */}
-        <div className="md:flex justify-center hidden bg-[#F0F5FF] rounded-full w-7 h-7 sidetToggleBtn">
-          <IconButton
-            color="primary"
-            aria-label="add to shopping cart"
-            size="small"
-          >
-            <MdMenuOpen color={"#292929"} />
-          </IconButton>
-        </div>
-
-        {/* Hidden Toggle Icon */}
-        <div className="justify-center md:hidden bg-[#F0F5FF] rounded-full w-7 h-7 sidetToggleBtn">
-          <IconButton
-            color="primary"
-            aria-label="add to shopping cart"
-            size="small"
-          >
-            <MdMenu color={"#292929"} />
-          </IconButton>
-        </div>
-
+    <div className="bg-gray-50 max-h-fit grow">
+      <nav className="flex flex-row items-center gap-1 sm:gap-2 md:gap-3 px-5 py-2 min-w-screen">
         {/* SearchBox */}
         <div className="md:inline-block hidden">
           <SearchBox />
@@ -54,13 +20,15 @@ export default function Header() {
           <div className="flex justify-center bg-[#F0F5FF] mx-1 rounded-full w-7 h-7 sidetToggleBtn">
             <IconButton
               color="primary"
-              aria-label="add to shopping cart"
-              size="small"
+              aria-label="Notification-list"
+              size="medium"
             >
               <IoSunnyOutline color={"#292929"} />
             </IconButton>
           </div>
-          <Notification />
+          <div className="flex justify-center bg-[#F0F5FF] mx-1 rounded-full w-7 h-7 sidetToggleBtn">
+            <Notification />
+          </div>
         </div>
 
         {/* Avatar */}

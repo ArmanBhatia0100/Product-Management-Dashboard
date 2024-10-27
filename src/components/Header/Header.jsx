@@ -1,7 +1,4 @@
-import { Link } from "react-router-dom";
-import { MdMenuOpen } from "react-icons/md";
 import { IconButton, Avatar } from "@mui/material"; // for toggle sidenav
-import { MdMenu } from "react-icons/md"; // for toggle back the sidenav
 import { IoSunnyOutline } from "react-icons/io5";
 import SearchBox from "../SearchBox/SearchBox";
 import Notification from "../NotificationaMenu/Notification";

@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Dashboard from "./pages/Dashboard.jsx";
-import SideBar from "./components/Sidebar/Sidebar.jsx";
+import Login from "./pages/Login.jsx";
 
 const router = createBrowserRouter([
   {
@@ -12,7 +12,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/test",
-    element: <SideBar></SideBar>,
+    element: <Login></Login>,
   },
 ]);
 

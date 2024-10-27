@@ -8,12 +8,10 @@ export default function Dashboard() {
    **  third line
    */
   return (
-    <div className="gap-0 grid grid-cols-[auto,3fr] min-h-screen">
+    <div className="gap-0 grid grid-cols-[20vw,80vw] max-w-full min-h-screen">
+      <SideBar />
       <div>
-        <SideBar />
-      </div>
-      <div>
-        <Header className={""} />
+        <Header />
         <div>
           <Outlet />
         </div>

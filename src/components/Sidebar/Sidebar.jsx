@@ -107,7 +107,7 @@ const SideBar = (props) => {
     <div>
       {/* Sidebar */}
       <div
-        className={`min-h-screen left-0 top-0 h-full bg-white transition-transform duration-300 ease-in-out w-64 z-40
+        className={`min-h-screen left-0 w-full top-0 h-full bg-white transition-transform duration-300 ease-in-out z-40
           ${
             isSidebarOpen
               ? "translate-x-0"

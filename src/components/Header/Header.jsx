@@ -5,7 +5,7 @@ import Notification from "../NotificationaMenu/Notification";
 
 export default function Header() {
   return (
-    <div className="bg-gray-50 max-h-fit grow">
+    <div className="bg-gray-100 max-h-fit grow">
       <nav className="flex flex-row items-center gap-1 sm:gap-2 md:gap-3 px-5 py-2 min-w-screen">
         {/* SearchBox */}
         <div className="md:inline-block hidden">

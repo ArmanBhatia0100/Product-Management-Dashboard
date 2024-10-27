@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 body{
-    background-color: #ebe9e9;
+    background-color: #EBE9E9;
     overflow-x: hidden;
+}
+*{
+    box-sizing: border-box;
 }

@@ -6,7 +6,9 @@ import Dashboard from "./pages/Dashboard.jsx";
 import Login from "./pages/Login.jsx";
 import Test from "./components/Test/Test.jsx";
 import Error from "./pages/Error.jsx";
-import DashboardSummary from "./components/Test/Test.jsx";
+import DashboardSummary from "./components/DashboardSummary/DashboardSummary.jsx";
+import { ProductList } from "./components/DashboardSummary/DashboardSummary.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -14,24 +16,19 @@ const router = createBrowserRouter([
     errorElement: <Error></Error>,
     children: [
       {
-        path: "login",
-        element: <Login />,
-      },
-      {
-        path: "/",
+        index: true,
         element: (
-          <div>
+          <div className="max-w-full">
             <DashboardSummary />
+            <ProductList />
           </div>
         ),
       },
-      ,
+      {
+        path: "login",
+        element: <Login />,
+      },
     ],
-  },
-  {
-    path: "/login",
-    element: <Login></Login>,
-    errorElement: <Error></Error>,
   },
   {
     path: "/test",

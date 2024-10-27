@@ -1,5 +1,6 @@
 import Header from "../components/Header/Header.jsx";
 import SideBar from "../components/Sidebar/Sidebar.jsx";
+import { Outlet } from "react-router-dom";
 
 export default function Dashboard() {
   /* TODO multiline example
@@ -7,10 +8,16 @@ export default function Dashboard() {
    **  third line
    */
   return (
-    <div className="flex flex-row">
-      <SideBar />
-      <Header />
-      <div className="sm:bg-black md:bg-red-400 lg:bg-green-300">DashBoard</div>
+    <div className="gap-0 grid grid-cols-[auto,3fr] min-h-screen">
+      <div>
+        <SideBar />
+      </div>
+      <div>
+        <Header className={""} />
+        <div>
+          <Outlet />
+        </div>
+      </div>
     </div>
   );
 }

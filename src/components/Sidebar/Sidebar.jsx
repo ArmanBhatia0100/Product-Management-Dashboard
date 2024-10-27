@@ -34,7 +34,6 @@ const SideBar = (props) => {
       subItems: [
         { title: "Add Product", path: "/products/add" },
         { title: "View Products", path: "/products/view" },
-        { title: "Categories", path: "/products/categories" },
       ],
     },
     {
@@ -107,7 +106,7 @@ const SideBar = (props) => {
     <div>
       {/* Sidebar */}
       <div
-        className={`min-h-screen left-0 w-full top-0 h-full bg-white transition-transform duration-300 ease-in-out z-40
+        className={`left-0 top-0 min-h-screen sticky bg-white transition-transform duration-300 ease-in-out z-40
           ${
             isSidebarOpen
               ? "translate-x-0"

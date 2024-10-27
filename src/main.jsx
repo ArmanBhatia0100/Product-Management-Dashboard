@@ -6,7 +6,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 import Login from "./pages/Login.jsx";
 import Test from "./components/Test/Test.jsx";
 import Error from "./pages/Error.jsx";
-
+import DashboardSummary from "./components/Test/Test.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,6 +17,15 @@ const router = createBrowserRouter([
         path: "login",
         element: <Login />,
       },
+      {
+        path: "/",
+        element: (
+          <div>
+            <DashboardSummary />
+          </div>
+        ),
+      },
+      ,
     ],
   },
   {

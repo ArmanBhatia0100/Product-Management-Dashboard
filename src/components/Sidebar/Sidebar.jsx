@@ -9,13 +9,11 @@ import {
   Login,
   PersonAdd,
   KeyboardArrowDown,
-  Menu as MenuIcon,
-  Close,
 } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
+
 import { Link } from "react-router-dom";
 
-const SideBar = (props) => {
+const SideBar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [openDropdowns, setOpenDropdowns] = useState({});
   const [activePath, setActivePath] = useState("/");
@@ -93,9 +91,9 @@ const SideBar = (props) => {
     }));
   };
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
+  // const toggleSidebar = () => {
+  //   setIsSidebarOpen(!isSidebarOpen);
+  // };
 
   const handleNavClick = (path) => {
     setActivePath(path);

@@ -37,7 +37,7 @@ const Login = () => {
 
   return (
     <div className="flex justify-center items-center bg-gradient-to-br from-blue-50 to-blue-100 p-4">
-      <div className="w-full max-w-md">
+      <section className="w-full max-w-md">
         {/* Card Container */}
         <div className="space-y-8 bg-white shadow-xl p-8 rounded-2xl">
           {/* Header Section */}
@@ -187,7 +187,7 @@ const Login = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

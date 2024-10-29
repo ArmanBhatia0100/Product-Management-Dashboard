@@ -39,8 +39,8 @@ const SideBar = () => {
       icon: <ShoppingCart className="text-xl" />,
       path: "null",
       subItems: [
-        { title: "New Orders", path: "/orders/new" },
-        { title: "Order History", path: "/orders/history" },
+        { title: "New Orders", path: "null" },
+        { title: "Order History", path: "null" },
       ],
     },
     {
@@ -48,8 +48,8 @@ const SideBar = () => {
       icon: <Message className="text-xl" />,
       path: "null",
       subItems: [
-        { title: "Inbox", path: "/messages/inbox" },
-        { title: "Sent", path: "/messages/sent" },
+        { title: "Inbox", path: "null" },
+        { title: "Sent", path: "null" },
       ],
     },
     {
@@ -57,8 +57,8 @@ const SideBar = () => {
       icon: <Notifications className="text-xl" />,
       path: "null",
       subItems: [
-        { title: "All Notifications", path: "/notifications/all" },
-        { title: "Settings", path: "/notifications/settings" },
+        { title: "All Notifications", path: "null" },
+        { title: "Settings", path: "null" },
       ],
     },
     {
@@ -66,8 +66,8 @@ const SideBar = () => {
       icon: <Settings className="text-xl" />,
       path: "null",
       subItems: [
-        { title: "Profile", path: "/settings/profile" },
-        { title: "Preferences", path: "/settings/preferences" },
+        { title: "Profile", path: "null" },
+        { title: "Preferences", path: "null" },
       ],
     },
     {
@@ -127,7 +127,10 @@ const SideBar = () => {
         <nav className="space-y-2 p-4">
           {menuItems.map((item, index) => (
             <div key={index} className="relative">
+              {/* NULL CHECKER - Main Item */}
+
               {item.path != "null" ? (
+                // IF Main item path NOT NULL
                 <Link to={item.path}>
                   <div
                     className={`flex items-center justify-between p-2 rounded-lg cursor-pointer
@@ -158,13 +161,10 @@ const SideBar = () => {
                   </div>
                 </Link>
               ) : (
+                // IF Main item path NULL
                 <div
                   className={`flex items-center justify-between p-2 rounded-lg cursor-pointer
-                  ${
-                    activePath === item.path
-                      ? "bg-blue-100 text-blue-600"
-                      : "hover:bg-gray-200"
-                  }`}
+                "`}
                   onClick={() => {
                     toggleDropdown(index);
                     if (item.subItems.length === 0) {
@@ -188,7 +188,9 @@ const SideBar = () => {
               )}
 
               {/* Dropdown Menu */}
+              {/* Sub Item checker */}
               {item.subItems.length > 0 && (
+                // If sub Items exists
                 <div
                   className={`ml-8 mt-2 space-y-2 transition-all duration-200 overflow-hidden
                     ${
@@ -197,22 +199,32 @@ const SideBar = () => {
                         : "max-h-0 opacity-0"
                     }`}
                 >
-                  {item.subItems.map((subItem, subIndex) => (
-                    <Link to={subItem.path != "null" ? subItem.path : ""}>
-                      <div
-                        key={subIndex}
-                        onClick={() => handleNavClick(subItem.path)}
-                        className={`block p-2 text-sm rounded-lg cursor-pointer
+                  {item.subItems.map((subItem, subIndex) =>
+                    subItem.path != "null" ? (
+                      <Link to={subItem.path}>
+                        <div
+                          key={subIndex}
+                          onClick={() => handleNavClick(subItem.path)}
+                          className={`block p-2 text-sm rounded-lg cursor-pointer
                         ${
                           activePath === subItem.path
                             ? "bg-blue-100 text-blue-600"
                             : "hover:bg-gray-200"
                         }`}
+                        >
+                          {subItem.title}
+                        </div>
+                      </Link>
+                    ) : (
+                      <div
+                        key={subIndex}
+                        onClick={() => handleNavClick(subItem.path)}
+                        className={`block p-2 text-sm rounded-lg cursor-pointer hover:bg-gray-200`}
                       >
                         {subItem.title}
                       </div>
-                    </Link>
-                  ))}
+                    )
+                  )}
                 </div>
               )}
             </div>

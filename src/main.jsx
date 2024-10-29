@@ -1,19 +1,21 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Provider } from "react-redux";
 import DashboardSummary from "./components/DashboardSummary/DashboardSummary.jsx";
 import ProductList from "./components/ProductList/ProductList.jsx";
-
 import Dashboard from "./pages/Dashboard.jsx";
 import Login from "./pages/Login.jsx";
 import Test from "./components/Test/Test.jsx";
 import Error from "./pages/Error.jsx";
 import ProductForm from "./components/AddProduct/ProductForm.jsx";
 
+import store from "./store/store.js";
+
 import "./index.css";
 // TODO Add these features
-// TODO Add the Link to the navabr for navigations
 // TODO Add the function adding products
+
 // This the main file for rendering all the components based on the route
 const router = createBrowserRouter([
   {
@@ -57,6 +59,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 );

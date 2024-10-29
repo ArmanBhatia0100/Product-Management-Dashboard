@@ -28,16 +28,16 @@ const SideBar = () => {
     {
       title: "Products",
       icon: <Inventory className="text-xl" />,
-      path: "/products",
+      path: "null",
       subItems: [
-        { title: "Add Product", path: "/products/add" },
-        { title: "View Products", path: "/products/view" },
+        { title: "Add Product", path: "products/addProduct" },
+        { title: "View Products", path: "/products" },
       ],
     },
     {
       title: "Orders",
       icon: <ShoppingCart className="text-xl" />,
-      path: "/orders",
+      path: "null",
       subItems: [
         { title: "New Orders", path: "/orders/new" },
         { title: "Order History", path: "/orders/history" },
@@ -46,7 +46,7 @@ const SideBar = () => {
     {
       title: "Messages",
       icon: <Message className="text-xl" />,
-      path: "/messages",
+      path: "null",
       subItems: [
         { title: "Inbox", path: "/messages/inbox" },
         { title: "Sent", path: "/messages/sent" },
@@ -55,7 +55,7 @@ const SideBar = () => {
     {
       title: "Notifications",
       icon: <Notifications className="text-xl" />,
-      path: "/notifications",
+      path: "null",
       subItems: [
         { title: "All Notifications", path: "/notifications/all" },
         { title: "Settings", path: "/notifications/settings" },
@@ -64,7 +64,7 @@ const SideBar = () => {
     {
       title: "Settings",
       icon: <Settings className="text-xl" />,
-      path: "/settings",
+      path: "null",
       subItems: [
         { title: "Profile", path: "/settings/profile" },
         { title: "Preferences", path: "/settings/preferences" },
@@ -79,7 +79,7 @@ const SideBar = () => {
     {
       title: "Sign Up",
       icon: <PersonAdd className="text-xl" />,
-      path: "/signup",
+      path: "null",
       subItems: [],
     },
   ];
@@ -127,31 +127,65 @@ const SideBar = () => {
         <nav className="space-y-2 p-4">
           {menuItems.map((item, index) => (
             <div key={index} className="relative">
-              <div
-                className={`flex items-center justify-between p-2 rounded-lg cursor-pointer
+              {item.path != "null" ? (
+                <Link to={item.path}>
+                  <div
+                    className={`flex items-center justify-between p-2 rounded-lg cursor-pointer
                   ${
                     activePath === item.path
                       ? "bg-blue-100 text-blue-600"
                       : "hover:bg-gray-200"
                   }`}
-                onClick={() => {
-                  toggleDropdown(index);
-                  if (item.subItems.length === 0) {
-                    handleNavClick(item.path);
-                  }
-                }}
-              >
-                <div className="flex flex-1 items-center space-x-3">
-                  {item.icon}
-                  <span className="font-medium text-sm">{item.title}</span>
-                </div>
-                {item.subItems.length > 0 && (
-                  <KeyboardArrowDown
-                    className={`transform transition-transform duration-200 
+                    onClick={() => {
+                      toggleDropdown(index);
+                      if (item.subItems.length === 0) {
+                        handleNavClick(item.path);
+                      }
+                    }}
+                  >
+                    <div className="flex flex-1 items-center space-x-3">
+                      {item.icon}
+                      <span className="font-medium text-sm">{item.title}</span>
+                    </div>
+
+                    {/* Item arrow icon */}
+                    {item.subItems.length > 0 && (
+                      <KeyboardArrowDown
+                        className={`transform transition-transform duration-200 
                       ${openDropdowns[index] ? "rotate-180" : ""}`}
-                  />
-                )}
-              </div>
+                      />
+                    )}
+                  </div>
+                </Link>
+              ) : (
+                <div
+                  className={`flex items-center justify-between p-2 rounded-lg cursor-pointer
+                  ${
+                    activePath === item.path
+                      ? "bg-blue-100 text-blue-600"
+                      : "hover:bg-gray-200"
+                  }`}
+                  onClick={() => {
+                    toggleDropdown(index);
+                    if (item.subItems.length === 0) {
+                      handleNavClick(item.path);
+                    }
+                  }}
+                >
+                  <div className="flex flex-1 items-center space-x-3">
+                    {item.icon}
+                    <span className="font-medium text-sm">{item.title}</span>
+                  </div>
+
+                  {/* Item arrow icon */}
+                  {item.subItems.length > 0 && (
+                    <KeyboardArrowDown
+                      className={`transform transition-transform duration-200 
+                      ${openDropdowns[index] ? "rotate-180" : ""}`}
+                    />
+                  )}
+                </div>
+              )}
 
               {/* Dropdown Menu */}
               {item.subItems.length > 0 && (
@@ -164,18 +198,20 @@ const SideBar = () => {
                     }`}
                 >
                   {item.subItems.map((subItem, subIndex) => (
-                    <div
-                      key={subIndex}
-                      onClick={() => handleNavClick(subItem.path)}
-                      className={`block p-2 text-sm rounded-lg cursor-pointer
+                    <Link to={subItem.path != "null" ? subItem.path : ""}>
+                      <div
+                        key={subIndex}
+                        onClick={() => handleNavClick(subItem.path)}
+                        className={`block p-2 text-sm rounded-lg cursor-pointer
                         ${
                           activePath === subItem.path
                             ? "bg-blue-100 text-blue-600"
                             : "hover:bg-gray-200"
                         }`}
-                    >
-                      {subItem.title}
-                    </div>
+                      >
+                        {subItem.title}
+                      </div>
+                    </Link>
                   ))}
                 </div>
               )}

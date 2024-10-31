@@ -12,11 +12,14 @@ import {
 } from "@mui/icons-material";
 
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../store/productSlice";
 
 const SideBar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [openDropdowns, setOpenDropdowns] = useState({});
   const [activePath, setActivePath] = useState("/");
+  const dispatch = useDispatch();
 
   const menuItems = [
     {
@@ -122,7 +125,6 @@ const SideBar = () => {
             <span className="font-bold text-2xl">HoTech</span>
           </Link>
         </div>
-
         {/* Navigation Items */}
         <nav className="space-y-2 p-4">
           {menuItems.map((item, index) => (
@@ -201,7 +203,7 @@ const SideBar = () => {
                 >
                   {item.subItems.map((subItem, subIndex) =>
                     subItem.path != "null" ? (
-                      <Link to={subItem.path}>
+                      <Link key={subIndex} to={subItem.path}>
                         <div
                           key={subIndex}
                           onClick={() => handleNavClick(subItem.path)}

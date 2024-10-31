@@ -8,10 +8,12 @@ import {
   InputLabel,
   Select,
 } from "@mui/material";
-
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../store/productSlice";
 const ProductForm = () => {
   const [rating, setRating] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null);
+  const dispatch = useDispatch();
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -27,6 +29,28 @@ const ProductForm = () => {
   const removeImage = () => {
     setSelectedImage(null);
   };
+
+  function submitHandler(e) {
+    console.log("submitted");
+
+    e.preventDefault();
+    dispatch(
+      addProduct({
+        uid: "#999",
+        image: "https://picsum.photos/id/1/200/300",
+        name: "Arman Tops and skirt set",
+        description: "Women's exclusive summer collection",
+        category: "womans",
+        brand: "richman",
+        originalPrice: 21.0,
+        salePrice: 21.0,
+        stock: 380,
+        rating: 4.9,
+        reviews: 16,
+        sales: "38k",
+      })
+    );
+  }
 
   return (
     <div className="bg-gray-50 p-4 md:p-8 min-h-screen">
@@ -176,6 +200,7 @@ const ProductForm = () => {
           <Button
             variant="contained"
             className="bg-blue-600 hover:bg-blue-700 px-8 py-2 text-white"
+            onClick={submitHandler}
           >
             Publish and View
           </Button>

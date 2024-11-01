@@ -35,7 +35,7 @@ const productSlice = createSlice({
     name:"product",
     initialState:initialProducts,
     reducers:{
-        addProduct: (state,actions)=>{
+        addProduct: (state,actions)=>{          
         state.unshift(actions.payload);
         },
         delProduct: (state)=>{}

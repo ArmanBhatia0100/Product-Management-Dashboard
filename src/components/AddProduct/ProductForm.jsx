@@ -10,9 +10,30 @@ import {
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../store/productSlice";
+import { faker } from "@faker-js/faker";
+
+//TODO-> Working Form
+//TODO->
 const ProductForm = () => {
   const [rating, setRating] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null);
+
+  const [formData, setFormData] = useState({
+    uid: "#" + Math.floor(Math.abs(Math.random() * 1000)),
+    image: "",
+    name: "",
+    description: "",
+    category: "",
+    subCategory: "",
+    brand: "",
+    originalPrice: "",
+    salePrice: "",
+    discount: "",
+    stock: "",
+    rating: 1,
+    reviews: 0,
+    sales: "15K",
+  });
   const dispatch = useDispatch();
 
   const handleImageUpload = (event) => {
@@ -31,26 +52,18 @@ const ProductForm = () => {
   };
 
   function submitHandler(e) {
-    console.log("submitted");
-
     e.preventDefault();
-    dispatch(
-      addProduct({
-        uid: "#999",
-        image: "https://picsum.photos/id/1/200/300",
-        name: "Arman Tops and skirt set",
-        description: "Women's exclusive summer collection",
-        category: "womans",
-        brand: "richman",
-        originalPrice: 21.0,
-        salePrice: 21.0,
-        stock: 380,
-        rating: 4.9,
-        reviews: 16,
-        sales: "38k",
-      })
-    );
+    dispatch(addProduct(formData));
   }
+
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      image: faker.image.avatar(),
+      rating,
+      [event.target.name]: event.target.value,
+    });
+  };
 
   return (
     <div className="bg-gray-50 p-4 md:p-8 min-h-screen">
@@ -65,6 +78,10 @@ const ProductForm = () => {
               label="Product Name"
               variant="outlined"
               className="mb-4"
+              value={formData.name}
+              onChange={handleChange}
+              name="name"
+              required={true}
             />
 
             <TextField
@@ -74,11 +91,21 @@ const ProductForm = () => {
               multiline
               rows={4}
               className="md:col-span-2 mb-4"
+              value={formData.description}
+              onChange={handleChange}
+              name="description"
+              required={true}
             />
 
             <FormControl fullWidth>
               <InputLabel>Category</InputLabel>
-              <Select label="Category" defaultValue="">
+              <Select
+                label="Category"
+                defaultValue=""
+                onChange={handleChange}
+                name="category"
+                required={true}
+              >
                 <MenuItem value="">None</MenuItem>
                 <MenuItem value="electronics">Electronics</MenuItem>
                 <MenuItem value="clothing">Clothing</MenuItem>
@@ -87,7 +114,13 @@ const ProductForm = () => {
 
             <FormControl fullWidth>
               <InputLabel>Sub Category</InputLabel>
-              <Select label="Sub Category" defaultValue="">
+              <Select
+                label="Sub Category"
+                defaultValue=""
+                onChange={handleChange}
+                name="subCategory"
+                required={true}
+              >
                 <MenuItem value="">None</MenuItem>
                 <MenuItem value="phones">Phones</MenuItem>
                 <MenuItem value="laptops">Laptops</MenuItem>
@@ -99,6 +132,10 @@ const ProductForm = () => {
               label="Price"
               variant="outlined"
               type="number"
+              name="salePrice"
+              value={formData.salePrice}
+              onChange={handleChange}
+              required={true}
             />
 
             <TextField
@@ -106,15 +143,30 @@ const ProductForm = () => {
               label="Old Price"
               variant="outlined"
               type="number"
+              name="originalPrice"
+              value={formData.originalPrice}
+              onChange={handleChange}
+              required={true}
             />
-
-            <TextField fullWidth label="Brand" variant="outlined" />
 
             <TextField
               fullWidth
-              label="Discount"
+              label="Brand"
+              variant="outlined"
+              value={formData.brand}
+              name="brand"
+              onChange={handleChange}
+              required={true}
+            />
+
+            <TextField
+              fullWidth
+              label="Discount %"
               variant="outlined"
               type="number"
+              name="discount"
+              value={formData.discount}
+              onChange={handleChange}
             />
 
             <TextField
@@ -122,24 +174,17 @@ const ProductForm = () => {
               label="Product Stock"
               variant="outlined"
               type="number"
+              name="stock"
+              value={formData.stock}
+              onChange={handleChange}
+              required={true}
             />
-
-            <FormControl fullWidth>
-              <InputLabel>Product Rams</InputLabel>
-              <Select label="Product Rams" defaultValue="">
-                <MenuItem value="">None</MenuItem>
-                <MenuItem value="4gb">4GB</MenuItem>
-                <MenuItem value="8gb">8GB</MenuItem>
-                <MenuItem value="16gb">16GB</MenuItem>
-              </Select>
-            </FormControl>
 
             <div className="md:col-span-2">
               <p className="mb-2">Ratings</p>
               <Rating
-                value={rating}
                 onChange={(event, newValue) => {
-                  setRating(newValue);
+                  setRating((Number(event.target.value) * 10) / 10);
                 }}
               />
             </div>

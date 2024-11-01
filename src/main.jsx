@@ -13,8 +13,6 @@ import ProductForm from "./components/AddProduct/ProductForm.jsx";
 import store from "./store/store.js";
 
 import "./index.css";
-// TODO Add these features
-// TODO Add the function adding products
 
 // This the main file for rendering all the components based on the route
 const router = createBrowserRouter([

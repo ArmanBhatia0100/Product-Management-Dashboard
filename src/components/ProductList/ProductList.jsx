@@ -7,7 +7,7 @@ const ProductList = () => {
   // Sample product data
 
   const products = useSelector((state) => state.product);
-  console.log(products);
+  console.log(products[0].image);
 
   return (
     <div className="wrapper p-2">
@@ -70,11 +70,9 @@ const ProductList = () => {
                   <td className="px-4 py-2 border">{product.brand}</td>
                   <td className="px-4 py-2 border">
                     <div className="text-gray-500 line-through">
-                      ${product.originalPrice.toFixed(2)}
+                      ${product.originalPrice}
                     </div>
-                    <div className="text-red-500">
-                      ${product.salePrice.toFixed(2)}
-                    </div>
+                    <div className="text-red-500">${product.salePrice}</div>
                   </td>
                   <td className="px-4 py-2 border">{product.stock}</td>
                   <td className="px-4 py-2 border">

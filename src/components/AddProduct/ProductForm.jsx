@@ -12,10 +12,10 @@ import { useDispatch } from "react-redux";
 import { addProduct } from "../../store/productSlice";
 import { faker } from "@faker-js/faker";
 
-//TODO-> Working Form
-//TODO->
+//FIXME-> Rating is not working - when I submit the form rating does not get resetted
+//TODO-> Feedback is not working
 const ProductForm = () => {
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(1);
   const [selectedImage, setSelectedImage] = useState(null);
 
   const [formData, setFormData] = useState({
@@ -30,8 +30,8 @@ const ProductForm = () => {
     salePrice: "",
     discount: "",
     stock: "",
-    rating: 1,
-    reviews: 0,
+    rating: 3.0,
+    reviews: 10,
     sales: "15K",
   });
   const dispatch = useDispatch();
@@ -53,14 +53,30 @@ const ProductForm = () => {
 
   function submitHandler(e) {
     e.preventDefault();
-    dispatch(addProduct(formData));
+    dispatch(addProduct({ ...formData, image: faker.image.avatar() }));
+
+    setFormData({
+      uid: "#" + Math.floor(Math.abs(Math.random() * 1000)),
+      image: "",
+      name: "",
+      description: "",
+      category: "",
+      subCategory: "",
+      brand: "",
+      originalPrice: "",
+      salePrice: "",
+      discount: "",
+      stock: "",
+      rating: 1,
+      reviews: 0,
+      sales: "15K",
+    });
+    setRating(0);
   }
 
   const handleChange = (event) => {
     setFormData({
       ...formData,
-      image: faker.image.avatar(),
-      rating,
       [event.target.name]: event.target.value,
     });
   };
@@ -72,7 +88,7 @@ const ProductForm = () => {
         <div className="bg-white shadow-md mb-6 p-6 rounded-lg">
           <h2 className="mb-6 font-semibold text-xl">Basic Information</h2>
 
-          <div className="gap-6 grid grid-cols-1 md:grid-cols-2">
+          <form className="gap-6 grid grid-cols-1 md:grid-cols-2">
             <TextField
               fullWidth
               label="Product Name"
@@ -183,12 +199,18 @@ const ProductForm = () => {
             <div className="md:col-span-2">
               <p className="mb-2">Ratings</p>
               <Rating
-                onChange={(event, newValue) => {
-                  setRating((Number(event.target.value) * 10) / 10);
-                }}
+                name="rating"
+                onChange={handleChange}
+                value={formData.rating}
+                // onChange={(event) => {
+                //   setFormData((prev) => {
+                //     return { ...formData, rating: event.target.value };
+                //   });
+                //   setRating(Number(event.target.value));
+                // }}
               />
             </div>
-          </div>
+          </form>
         </div>
 
         {/* Media Section */}

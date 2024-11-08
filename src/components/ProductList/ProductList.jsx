@@ -78,7 +78,7 @@ const ProductList = () => {
                   <td className="px-4 py-2 border">
                     <div className="flex items-center gap-2">
                       <Rating
-                        value={product.rating}
+                        value={Number(product.rating)}
                         precision={0.5}
                         readOnly
                         size="small"

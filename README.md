@@ -2,6 +2,11 @@
 
 Welcome to the **Project Dashboard** repository! This application allows users to seamlessly **add, view, and delete products**, providing a clean and intuitive interface for managing product inventories. Whether you're a developer looking to explore the codebase or a user managing products, this project is designed to enhance your workflow efficiently.
 
+ ![Screenshot](productpage.png)
+
+ ![Screenshot](productpage2.png)
+
+
 ## 🌟 Technologies Used
 
 - 🎨 **HTML** – The foundational structure of the web application.
